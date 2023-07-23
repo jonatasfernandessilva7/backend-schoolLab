@@ -9,7 +9,13 @@ router.post('/admgeral/Adm/home', admController.AdmLogin);
 
 router.post('/admgeral/CadastroMonitor', admController.cadastroMonitor);
 
-router.get('/alunos', admController.buscaTodosOsAlunos)
+router.post('/admgeral/adicionar_laboratorios', admController.addLab);
+
+router.get('/alunos', admController.buscaTodosOsAlunos);
+
+router.get('/laboratorios', admController.buscaTodosOsLaboratorios);
+
+router.get('/monitores', admController.buscaTodosOsMonitores);
 
 //rotas del adm
 router.delete('/admgeral/DeletarMonitor', admController.delMonitor);

@@ -35,21 +35,58 @@ const buscaTodosOsAlunos = async (req, res) => {
 
 }
 
+const buscaTodosOsLaboratorios = async (req, res) => {
+    try {
+        const laboratorios = await admService.buscaLabs();
+
+        return res.json({
+            success: true,
+            data: laboratorios,
+            message: "laboratorios found successfully",
+        });
+
+    } catch (error) {
+        return res.status(500).json({ message: error });
+    }
+
+}
+
+const buscaTodosOsMonitores = async (req, res) => {
+    try {
+        const monitores = await admService.buscaMonitores();
+
+        return res.json({
+            success: true,
+            data: monitores,
+            message: "monitores found successfully",
+        });
+
+    } catch (error) {
+        return res.status(500).json({ message: error });
+    }
+
+}
+
 
 const cadastroMonitor = async (req, res) => {
 
     try {
 
-        const { nome, email, curso, senha } = req.body;
+        const { nome, email, curso, senha, laboratorio } = req.body;
 
         let busca = await admService.buscaMonitor(email);
+        let buscaDoLab = await admService.buscaLab(laboratorio);
 
         if (busca) {
             res.json({message: "alredy user"});
         } else {
             try {
-                novomonitor = await admService.createMonitor(nome, email, curso, senha);
-                res.json({message: "ok", user: novomonitor});
+                if (buscaLab){
+                    let novoMonitor = await admService.createMonitor(nome, email, curso, senha);
+                    res.json({message: "ok", user: novoMonitor});
+                }else{
+                    res.json("impossivel cadastrar, laboratorio inexistente");
+                }
             } catch (error) {
                 res.send(error);
             }
@@ -145,4 +182,6 @@ module.exports = {
     delAluno,
     buscaTodosOsAlunos,
     addLab,
+    buscaTodosOsLaboratorios,
+    buscaTodosOsMonitores
 }
