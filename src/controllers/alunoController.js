@@ -34,7 +34,7 @@ const LoginAluno = async (req, res) => {
                 user: searchUser,
             });
         }
-    }catch(error{
+    }catch(error){
         res.json({error})
     }
 }
@@ -53,7 +53,6 @@ const updateAlunoSenha = async (req, res) => {
                 res.json({error})
             }
         }
-    }
     }catch(error){
         res.json({error: error});
     }
