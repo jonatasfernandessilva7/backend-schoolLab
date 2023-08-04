@@ -1,5 +1,4 @@
 import { PrismaClient } from '@prisma/client';
-
 const prisma = new PrismaClient();
 
 async function createUser (nome, email, curso, senha) {
@@ -11,7 +10,6 @@ async function createUser (nome, email, curso, senha) {
             senha
         }
     });
-
     return user;    
 }
 
@@ -24,7 +22,6 @@ async function updateAluno(email, senha) {
             senha,
        }, 
     });
-
     return updateSenha;
 }
 
@@ -34,7 +31,6 @@ async function buscaAluno(email) {
             email
         }
     });
-
     return userFind;
 }
 
@@ -49,7 +45,6 @@ async function buscaTodosOsDados(nome, email, curso, senha){
             senha
         }
     });
-
     return buscaTudo;
 }
 
@@ -62,10 +57,8 @@ async function updateDataAluno(nome, email,curso,senha){
             nome, curso, senha
         }
     });
-
     return updateData;
 }
-
 
 module.exports = {
     createUser,

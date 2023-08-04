@@ -1,5 +1,4 @@
 import { PrismaClient } from '@prisma/client';
-
 const prisma = new PrismaClient();
 
 async function createMonitor(nome, email, curso, senha, laboratorio) {
@@ -9,10 +8,9 @@ async function createMonitor(nome, email, curso, senha, laboratorio) {
             email,
             curso,
             senha,
-            laboratorio: Integer
+            laboratorio
         }
     });
-
     return novoMonitor;
 }
 
@@ -22,7 +20,6 @@ async function deleteMonitor(email) {
             email
         },
     });
-
     return del;
 }
 
@@ -32,10 +29,8 @@ async function deleteUsuario(email) {
             email
         },
     });
-
     return del;
 }
-
 
 async function buscaMonitor(email) {
     let userFind = await prisma.monitores.findUnique({
@@ -67,32 +62,27 @@ async function buscaAdm(email) {
     return userFind;
 }
 
-
 async function buscaUsuarioADeletar(email) {
     let userFind = await prisma.alunos.findUnique({
         where: {
             email
         }
     });
-
     return userFind;
 }
 
 async function buscaAlunos () {
-
     let users = await prisma.alunos.findMany();
     return users
 }
 
 async function adicionarLaboratorios(status, numero){
-
     let newLab = await prisma.laboratorios.create({
         data: {
             status,
-            numero: Integer
+            numero
         }
     })
-
     return newLab;
 
 }
@@ -100,22 +90,19 @@ async function adicionarLaboratorios(status, numero){
 async function buscaLab(numero) {
     let busca = await prisma.laboratorios.findUnique({
         where: {
-            numero : Number()
+            numero
         }
     });
-
     return busca
 }
 
 async function buscaLabs() {
     let busca = await prisma.laboratorios.findMany();
-
     return busca
 }
 
 async function buscaMonitores() {
     let busca = await prisma.monitores.findMany();
-
     return busca
 }
 

@@ -1,5 +1,4 @@
 import { PrismaClient } from '@prisma/client';
-
 const prisma = new PrismaClient();
 
 async function buscaEmail(email) {
@@ -10,7 +9,6 @@ async function buscaEmail(email) {
     });
     return busca;
 }
-
 
 module.exports = {
     buscaEmail
