@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const admController = require('../controllers/admController');
+const AdmController = require('../controllers/admController');
 const sugestao = require("../controllers/emailSugestaoController");
+
+const admController = new AdmController();
 
 router.post('/admgeral/Contato', sugestao);
 router.post('/admgeral/home', admController.AdmLogin);

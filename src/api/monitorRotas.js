@@ -1,8 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const monitorController = require('../controllers/monitorController');
+const MonitorControler = require('../controllers/monitorController');
 const recuperandoSenha = require ("../controllers/recuperarSenhaController")
 const sugestao = require("../controllers/emailSugestaoController");
+
+const monitorController = new MonitorControler();
 
 router.post('/esqueceuASenha', recuperandoSenha);
 router.post('/monitor/Contato', sugestao);

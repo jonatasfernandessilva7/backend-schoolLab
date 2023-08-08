@@ -45,7 +45,7 @@ model Administradores {
 model Computadores {
   id Int @id @default(autoincrement())
   status String @default("livre")
-  numero Int
+  numero Int @unique
   emailAluno String
   aluno Alunos @relation(fields: [emailAluno], references: [email])
 
@@ -55,7 +55,7 @@ model Computadores {
 model Laboratorios {
   id Int @id @default(autoincrement())
   status String @default("aberto")
-  numero Int
+  numero Int @unique
   emailAluno String
   emailMonitor String
   aluno Alunos @relation(fields: [emailAluno], references: [email])
