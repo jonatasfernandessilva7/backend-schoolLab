@@ -19,7 +19,7 @@ async function mailerEnviaEmail(email, sugestao, aluno) {
         let info = await transporter.sendMail({
             from: email,
             to: process.env.EMAIL_ENVIAR,
-            subject: "sugestão✔",
+            subject: "IMPORTANTE",
             text: "sugestão",
             html: sugestao + '<br><br><strong>enviado por </strong>' + aluno,
         });

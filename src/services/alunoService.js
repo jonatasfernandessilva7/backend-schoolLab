@@ -26,29 +26,6 @@ class AlunoService{
         return updateSenha;
     }
 
-    async buscaAluno(email) {
-        let userFind = await prisma.alunos.findUnique({
-            where:{
-                email
-            }
-        });
-        return userFind;
-    }
-
-    async buscaTodosOsDados(nome, email, curso, senha){
-        let buscaTudo = await prisma.alunos.findUnique({
-            where: {
-                email,
-            },
-            data: {
-                nome,
-                curso,
-                senha
-            }
-        });
-        return buscaTudo;
-    }
-
     async updateDataAluno(nome, email,curso,senha){
         let updateData = await prisma.alunos.update({
             where:{
@@ -59,6 +36,22 @@ class AlunoService{
             }
         });
         return updateData;
+    }
+
+    async buscaAluno(email) {
+        let userFind = await prisma.alunos.findUnique({
+            where:{
+                email
+            }
+        });
+        return userFind;
+    }
+
+    async buscaAlunoPorId(id){
+        let buscaIdAluno = await prisma.alunos.findUnique({
+            where : {id : Number(id)}
+        });
+        return buscaIdAluno
     }
 }
 

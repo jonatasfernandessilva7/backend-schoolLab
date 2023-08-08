@@ -10,6 +10,16 @@ async function buscaEmail(email) {
     return busca;
 }
 
+async function buscaId(id) {
+    let buscaId = await prisma.alunos.findUnique({
+        where: {
+            id: Number(id)
+        }
+    });
+    return buscaId;
+}
+
 module.exports = {
-    buscaEmail
+    buscaEmail,
+    buscaId
 }

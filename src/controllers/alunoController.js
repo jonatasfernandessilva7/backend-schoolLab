@@ -64,8 +64,9 @@ class AlunoController{
 
     async updateAluno(req, res) {
         try{
+            const {id} = req.params;
             let { nome, email, senha, curso } = req.body;
-            let userFind = await userService.buscaAluno(email);
+            let userFind = await userService.buscaAlunoPorId(id);
             if (!userFind) {
                 res.send("user não encontrado");
             } else {
@@ -77,19 +78,21 @@ class AlunoController{
                 }
             }
         }catch(error){
-            res.json(erro: error);
+            res.json({erro: error});
         }
     }
 
     async PerfilAluno(req, res) {
         try{
-            const { nome, email, curso, senha } = req.session;
-            let User = await userService.buscaTodosOsDados(nome, email, curso, senha);
-            if (User) {
-                res.json({User: User});
-            } else {
-                res.json({message: "erro inesperado, desculpe"});
+            const {id} = req.params;
+            const Aluno = await userService.buscaAlunoPorId(id);
+            if (!Aluno){
+                return res.status(400).json({message: "usuario não encontrado"})
             }
+            return res.status(200).json({
+                message: "usuario encontrado",
+                aluno: Aluno
+            });
         }catch(error){
             res.json({erro:error});
         }

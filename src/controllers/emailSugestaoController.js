@@ -3,17 +3,14 @@ const sendEmail = require("../services/envioDeEmail");
 
 const enviandoSugestao = async (req, res) => {
     try{
+        const {id} = req.params;
         const { email, sugestao, nome } = req.body;
-        var searchUser = await sugestaoService.buscaEmail(email);
-        try {
-            if (searchUser === null) {
-                return res.status(400).json({message: 'user not found'})
-            } else {
-                await sendEmail.mailerEnviaEmail(email, sugestao, nome);
-                res.json({message: "sugestão enviada"});
-            }
-        }catch(erro){
-            res.json({erro});
+        var searchUser = await sugestaoService.buscaId(id);
+        if (!searchUser) {
+            return res.status(400).json({message: 'user not found'})
+        } else {
+            await sendEmail.mailerEnviaEmail(email, sugestao, nome);
+            res.status(200).json({message: "sugestão enviada", email:sugestao, usuario: email});
         }
     }catch(error){
         res.json({erro: error});
