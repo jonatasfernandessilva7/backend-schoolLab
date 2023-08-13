@@ -80,20 +80,29 @@ Prof. Orientador - Anderson Uchôa.
 
 ## :neckbeard: Rotas da API REST utilizadas
 
-| Método HTTP | URL |
-| --- | --- |
-| POST | /Aluno/cadastro/login |
-| POST | /Aluno/login/home |
-| POST | /esqueceuASenha|
-| POST | /Monitor/cadastro/loginMonitor|
-| POST | /Monitor/login/home|
-| POST | /Aluno/Contato|
-| POST | /admgeral/Adm/home|
-| POST | /admgeral/CadastroMonitor|
-| PUT | /Aluno/perfil |
-| PUT | /Aluno/recuperacao/inserirNovaSenha |
-| DELETE | /views/admgeral/DeletarMonitor |
-| DELETE | /views/admgeral/DeletarAluno |
+| Método HTTP | URL                                 |
+|-------------|-------------------------------------|
+| GET         | /aluno/perfil/:id                   |
+| GET         | /monitor/perfil/:id                 |
+| GET         | /admgeral/busca_laboratorio         |
+| GET         | /alunos                             |
+| GET         | /laboratorios                       |
+| GET         | /monitores                          |
+| GET         | /admgeral/perfil/:id                |
+| POST        | /admgeral/Contato/:id               |
+| POST        | /aluno/cadastro/login               |
+| POST        | /aluno/login/home                   |
+| POST        | /esqueceuASenha                     |
+| POST        | /monitor/login/home                 |
+| POST        | /monitor/Contato/:id                |
+| POST        | /aluno/Contato/:id                  |
+| POST        | /admgeral/home                      |
+| POST        | /admgeral/CadastroMonitor           |
+| POST        | /admgeral/adicionaar_laboratorios   |
+| PUT         | /aluno/perfil/:id                   |
+| PUT         | /aluno/recuperacao/inserirNovaSenha |
+| DELETE      | /admgeral/DeletarMonitor            |
+| DELETE      | /admgeral/DeletarAluno              |
 
 ## Documentação
 * [Documento de visão do projeto]
