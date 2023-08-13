@@ -62,19 +62,14 @@ class AdmController{
 
     async cadastroMonitor(req, res) {
         try {
-            const { nome, email, curso, senha, laboratorio } = req.body;
+            const { nome, email, curso, senha } = req.body;
             let busca = await admService.buscaMonitor(email);
-            let buscaDoLab = await admService.buscaLab(laboratorio);
             if (busca) {
                 res.json({message: "alredy user"});
             } else {
                 try {
-                    if (buscaLab){
-                        let novoMonitor = await admService.createMonitor(nome, email, curso, senha);
-                        res.json({message: "ok", user: novoMonitor});
-                    }else{
-                        res.json("impossivel cadastrar, laboratorio inexistente");
-                    }
+                    let novoMonitor = await admService.createMonitor(nome, email, curso, senha);
+                    res.json({message: "ok", user: novoMonitor});
                 } catch (error) {
                     res.send(error);
                 }
@@ -128,19 +123,13 @@ class AdmController{
 
     async addLab(req, res) {
         try {
-            const { numero, status } = req.body;
-            let buscaLab = await admService.buscaLab(numero);
-            if (buscaLab){
-                res.json({
-                    message: "laboratorio ja existe, impossível cadastrar"
-                });
-            }else {
-                let newLab = await admService.adicionarLaboratorios(numero, status);
-                res.json({
-                    message: "laboratorio criado com sucesso",
-                    data: newLab
-                });
-            }
+            const {numero, emailMonitor } = req.body;
+            let monitor = await admService.buscaMonitor(emailMonitor);
+            let newLab = await admService.adicionarLaboratorios(numero, monitor);
+            res.json({
+                 message: "laboratorio criado com sucesso",
+                 data: newLab
+            });
         }catch(erro){
             return res.json({erro: erro});
         }

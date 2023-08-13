@@ -2,15 +2,14 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 class AdmService{
-    async createMonitor(nome, email, curso, senha, laboratorio) {
+    async createMonitor(nome, email, curso, senha) {
         const novoMonitor = await prisma.monitores.create({
             data: {
                 nome,
                 email,
                 curso,
                 senha,
-                laboratorio
-            }
+            },
         });
         return novoMonitor;
     }
@@ -77,13 +76,16 @@ class AdmService{
         return users
     }
 
-    async adicionarLaboratorios(status, numero){
+    async adicionarLaboratorios(numero, monitor){
         let newLab = await prisma.laboratorios.create({
             data: {
-                status,
-                numero
-            }
-        })
+                numero: Number(numero),
+                emailMonitor: monitor.email,
+            },
+            include:{
+                monitor: true,
+            },
+        });
         return newLab;
 
     }
@@ -91,7 +93,7 @@ class AdmService{
     async buscaLab(numero) {
         let busca = await prisma.laboratorios.findUnique({
             where: {
-                numero
+                numero: Number(numero)
             }
         });
         return busca
