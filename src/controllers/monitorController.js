@@ -22,6 +22,22 @@ class MonitorController{
             res.json({erro:error});
         }
     }
+
+    async perfil(req, res) {
+                try{
+                    const {id} = req.params;
+                    const monitor = await monitorService.buscaMonitorPorId(id);
+                    if (!monitor){
+                        return res.status(400).json({message: "usuario não encontrado"})
+                    }
+                    return res.status(200).json({
+                        message: "usuario encontrado",
+                        monitor: monitor
+                    });
+                }catch(error){
+                    res.json({erro:error});
+                }
+        }
 }
 
-module.exports = MonitorController
+module.exports = MonitorController;

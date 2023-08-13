@@ -5,17 +5,17 @@ const admService = new AdmService();
 class AdmController{
     async AdmLogin(req, res) {
         try{
-                const { email } = req.body;
-                    let buscaAdm = await admService.buscaAluno(email);
-                    try {
-                        if (buscaAdm === null) {
-                            return res.status(400).send('user not found');
-                        } else {
-                            res.json({user: buscaAdm});
-                        }
-                    } catch (error) {
-                        res.json({error});
-                    }
+            const { email } = req.body;
+            let buscaAdm = await admService.buscaAluno(email);
+            try {
+                if (buscaAdm === null) {
+                        return res.status(400).send('user not found');
+                } else {
+                        res.json({user: buscaAdm});
+                }
+            }catch (error) {
+                    res.json({error});
+            }
         }catch(error){
                 res.json({error});
         }
@@ -71,11 +71,11 @@ class AdmController{
                     let novoMonitor = await admService.createMonitor(nome, email, curso, senha);
                     res.json({message: "ok", user: novoMonitor});
                 } catch (error) {
-                    res.send(error);
+                    res.json({erro: error});
                 }
             }
         } catch (erro) {
-            console.log(erro);
+            res.json({erro: erro});
         }
     }
 
@@ -125,14 +125,39 @@ class AdmController{
         try {
             const {numero, emailMonitor } = req.body;
             let monitor = await admService.buscaMonitor(emailMonitor);
-            let newLab = await admService.adicionarLaboratorios(numero, monitor);
-            res.json({
-                 message: "laboratorio criado com sucesso",
-                 data: newLab
-            });
+            let buscaLaboatorio = await admService.buscaLab(numero);
+            if (monitor){
+                if(buscaLaboatorio){
+                    let newLab = await admService.adicionarLaboratorios(numero, monitor);
+                    res.json({
+                         message: "laboratorio criado com sucesso",
+                         data: newLab
+                    });
+                }else{
+                    res.json({message: "laboratorio ja existe"});
+                }
+            }else{
+                res.json({message: "monitor não encontrado"})
+            }
         }catch(erro){
             return res.json({erro: erro});
         }
+    }
+
+    async perfil(req, res) {
+            try{
+                const {id} = req.params;
+                const adm = await admService.buscaAdmPorId(id);
+                if (!adm){
+                    return res.status(400).json({message: "usuario não encontrado"})
+                }
+                return res.status(200).json({
+                    message: "usuario encontrado",
+                    adm: adm
+                });
+            }catch(error){
+                res.json({erro:error});
+            }
     }
 }
 

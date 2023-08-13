@@ -73,7 +73,7 @@ class AdmService{
 
     async buscaAlunos () {
         let users = await prisma.alunos.findMany();
-        return users
+        return users;
     }
 
     async adicionarLaboratorios(numero, monitor){
@@ -96,18 +96,25 @@ class AdmService{
                 numero: Number(numero)
             }
         });
-        return busca
+        return busca;
     }
 
     async buscaLabs() {
         let busca = await prisma.laboratorios.findMany();
-        return busca
+        return busca;
     }
 
     async buscaMonitores() {
         let busca = await prisma.monitores.findMany();
-        return busca
+        return busca;
+    }
+
+    async buscaAdmPorId(id){
+         let buscaAdmPorId = await prisma.administradores.findUnique({
+              where : {id : Number(id)}
+         });
+         return buscaAdmPorId;
     }
 } 
 
-module.exports = AdmService
+module.exports = AdmService;

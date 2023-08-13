@@ -8,7 +8,7 @@ const admController = new AdmController();
 router.get('/alunos', admController.buscaTodosOsAlunos);
 router.get('/laboratorios', admController.buscaTodosOsLaboratorios);
 router.get('/monitores', admController.buscaTodosOsMonitores);
-//router.get("/admgeral/perfil/:id", admController.perfil);
+router.get("/admgeral/perfil/:id", admController.perfil);
 router.post('/admgeral/Contato/:id', sugestao);
 router.post('/admgeral/home', admController.AdmLogin);
 router.post('/admgeral/CadastroMonitor', admController.cadastroMonitor);

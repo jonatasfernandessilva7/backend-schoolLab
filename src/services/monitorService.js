@@ -10,6 +10,16 @@ class MonitorService{
         });
         return userFind;
     }
+
+    async buscaMonitorPorId(id){
+          let buscaMonitorPorId = await prisma.monitores.findFirst({
+              where : {id : Number(id)},
+              include:{
+                laboratorios: true
+              }
+          });
+          return buscaMonitorPorId;
+        }
 }
 
 module.exports = MonitorService

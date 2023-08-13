@@ -6,7 +6,7 @@ const sugestao = require("../controllers/emailSugestaoController");
 
 const monitorController = new MonitorControler();
 
-//router.get("/monitor/perfil/:id", monitorController.perfil);
+router.get("/monitor/perfil/:id", monitorController.perfil);
 router.post('/esqueceuASenha', recuperandoSenha);
 router.post('/monitor/Contato', sugestao);
 router.post('/monitor/login/home', monitorController.LoginMonitor);
