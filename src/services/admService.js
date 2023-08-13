@@ -91,9 +91,12 @@ class AdmService{
     }
 
     async buscaLab(numero) {
-        let busca = await prisma.laboratorios.findUnique({
+        let busca = await prisma.laboratorios.findFirst({
             where: {
                 numero: Number(numero)
+            },
+            include:{
+                computadores: true
             }
         });
         return busca;

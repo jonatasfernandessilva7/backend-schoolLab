@@ -47,6 +47,8 @@ model Computadores {
   numero Int @unique
   emailAluno String
   aluno Alunos @relation(fields: [emailAluno], references: [email])
+  numeroLaboratorio Int
+  laboratorio Laboratorios @relation(fields: [numeroLaboratorio], references: [numero])
 
   @@map("computadores")
 }
@@ -57,6 +59,7 @@ model Laboratorios {
   numero Int @unique
   emailMonitor String
   monitor Monitores @relation(fields: [emailMonitor], references: [email])
+  computadores Computadores[]
 
   @@map("laboratorios")
 }

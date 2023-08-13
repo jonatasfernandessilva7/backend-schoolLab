@@ -5,6 +5,7 @@ const sugestao = require("../controllers/emailSugestaoController");
 
 const admController = new AdmController();
 
+router.get('/admgeral/busca_laboratorio', admController.buscaLab);
 router.get('/alunos', admController.buscaTodosOsAlunos);
 router.get('/laboratorios', admController.buscaTodosOsLaboratorios);
 router.get('/monitores', admController.buscaTodosOsMonitores);

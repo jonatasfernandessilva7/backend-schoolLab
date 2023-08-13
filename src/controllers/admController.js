@@ -159,6 +159,24 @@ class AdmController{
                 res.json({erro:error});
             }
     }
+
+    async buscaLab(req, res){
+        try{
+            const {numero} = req.body;
+            const lab = await admService.buscaLab(numero);
+            if(lab){
+                res.json({
+                    lab: lab
+                });
+            }else{
+                res.json({
+                    message:"lab não encontrado"
+                });
+            }
+        }catch(error){
+            res.json({erro: error});
+        }
+    }
 }
 
 module.exports = AdmController
