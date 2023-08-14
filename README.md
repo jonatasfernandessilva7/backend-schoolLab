@@ -72,11 +72,13 @@ Prof. Orientador - Anderson Uchôa.
 ## :shipit: Operações implementadas para cada entidade da aplicação
 
 
-| Entidade| Criação | Leitura | Atualização | Remoção |
-| --- | --- | --- | --- | --- |
-| Usuários | X |  X  | X | X |
-| Monitores | X |   X |  X | X|
-| Administradores | X |   X |   | |
+| Entidade        | Criação | Leitura | Atualização | Remoção |
+|-----------------|---------|---------|-------------|---------|
+| Usuários        | X       | X       | X           | X       |
+| Monitores       | X       | X       | X           | X       |
+| Administradores | X       | X       |             |         |
+| Computadores    | X       | X       |             |
+| Laboratorios    | X       | X       |             |         |
 
 ## :neckbeard: Rotas da API REST utilizadas
 
