@@ -38,7 +38,6 @@ class AdmService{
                 email 
             }
         });
-
         return userFind;
     }
 
@@ -48,7 +47,6 @@ class AdmService{
                 email
             }
         });
-
         return userFind;
     }
 
@@ -58,7 +56,6 @@ class AdmService{
                 email
             }
         });
-
         return userFind;
     }
 
@@ -118,6 +115,27 @@ class AdmService{
          });
          return buscaAdmPorId;
     }
+
+    async createComputador(numero, laboratorio){
+        let novoComp = await prisma.computadores.create({
+            data: {
+                numero: Number(numero),
+                numeroLaboratorio: Number(laboratorio.numero),
+            },
+            include:{
+                laboratorio: true,
+            },
+        });
+        return novoComp;
+    }
+
+    async buscaComputador(numero){
+        let buscaComp = await prisma.computadores.findUnique({
+            where:{numero: Number(numero)}
+        });
+        return buscaComp;
+    }
+
 } 
 
 module.exports = AdmService;

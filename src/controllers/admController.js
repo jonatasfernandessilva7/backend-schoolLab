@@ -177,6 +177,30 @@ class AdmController{
             res.json({erro: error});
         }
     }
+
+    async adicionaComputador(req, res){
+        try{
+            const {numeroComputador, numeroLaboratorio} = req.body;
+            const buscaLaboratorio = await admService.buscaLab(numeroLaboratorio);
+            const buscaComputador = await admService.buscaComputador(numeroComputador);
+            if (buscaLaboratorio){
+                if(buscaComputador){
+                    res.json({message: "ja existe um computador com esse numero"});
+                }else{
+                    try{
+                        let computador = await admService.createComputador(numeroComputador, buscaLaboratorio);
+                        res.json({message: "criado", computador: computador});
+                    }catch(error){
+                        res.json({erro:"o erro é: " + error});
+                    }
+                }
+            }else{
+                res.json({message: "laboratorio não encontrado"});
+            }
+        }catch(error){
+            res.json({erro: error})
+        }
+    }
 }
 
 module.exports = AdmController

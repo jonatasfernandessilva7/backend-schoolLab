@@ -16,7 +16,6 @@ model Alunos {
   email String @unique
   curso String
   senha String
-  computadores Computadores[]
 
   @@map("alunos")
 }
@@ -45,8 +44,6 @@ model Computadores {
   id Int @id @default(autoincrement())
   status String @default("livre")
   numero Int @unique
-  emailAluno String
-  aluno Alunos @relation(fields: [emailAluno], references: [email])
   numeroLaboratorio Int
   laboratorio Laboratorios @relation(fields: [numeroLaboratorio], references: [numero])
 

@@ -14,6 +14,7 @@ router.post('/admgeral/Contato/:id', sugestao);
 router.post('/admgeral/home', admController.AdmLogin);
 router.post('/admgeral/CadastroMonitor', admController.cadastroMonitor);
 router.post('/admgeral/adicionar_laboratorios', admController.addLab);
+router.post('/admgeral/adicionarComputador', admController.adicionaComputador);
 router.delete('/admgeral/DeletarMonitor', admController.delMonitor);
 router.delete('/admgeral/DeletarAluno', admController.delAluno);
 
