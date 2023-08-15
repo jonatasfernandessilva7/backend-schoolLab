@@ -105,7 +105,13 @@ class AdmService{
     }
 
     async buscaMonitores() {
-        let busca = await prisma.monitores.findMany();
+        let busca = await prisma.monitores.findMany({
+            include: {
+                _count: {
+                  select: { laboratorios: true },
+                },
+              },
+        });
         return busca;
     }
 
