@@ -16,6 +16,7 @@ model Alunos {
   email String @unique
   curso String
   senha String
+  historico Historico[]
 
   @@map("alunos")
 }
@@ -46,6 +47,7 @@ model Computadores {
   numero Int @unique
   numeroLaboratorio Int
   laboratorio Laboratorios @relation(fields: [numeroLaboratorio], references: [numero])
+  historico Historico[]
 
   @@map("computadores")
 }
@@ -59,4 +61,13 @@ model Laboratorios {
   computadores Computadores[]
 
   @@map("laboratorios")
+}
+
+model Historico {
+  emailAluno String @unique
+  aluno Alunos @relation(fields: [emailAluno], references: [email])
+  numeroComputador Int
+  computador Computadores @relation(fields: [numeroComputador], references: [numero])
+
+  @@map("historico")
 }
