@@ -1,0 +1,14 @@
+inputSet:
+  name: Build_backend_schoolLab_1695401482404-push-trigger-input-set
+  identifier: Build_backend_schoolLab_1695401482404pushtriggerinputset
+  orgIdentifier: default
+  projectIdentifier: default_project
+  pipeline:
+    identifier: Build_backend_schoolLab_1695401482404
+    properties:
+      ci:
+        codebase:
+          build:
+            type: branch
+            spec:
+              branch: <+trigger.branch>
